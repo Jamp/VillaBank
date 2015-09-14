@@ -1,0 +1,21 @@
+{
+  "name": "villa",
+  "version": "1.0",
+  "authors": [
+    "Jaro Marval <jampgold@gmail.com>"
+  ],
+  "description": "Backend para la aplicación del villalobos",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

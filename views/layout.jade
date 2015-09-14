@@ -1,0 +1,17 @@
+doctype html
+html(lang='es')
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+
+    link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(type='javascript', src='/lib/jquery/dist/jquery.min.js')
+  body
+    div.container
+        include partials/menu
+        div.col-md-9
+            include partials/header
+            block content
