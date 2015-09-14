@@ -1,6 +1,10 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
     padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 14px;
     line-height: 1.5;
     color: #cfd2da;
     background-color: #252830;
@@ -11,9 +15,23 @@ body {
     text-transform: uppercase;
 }*/
 
+#logo {
+    display: block;
+    font-size: 10em;
+    margin-bottom: .2em;
+    text-align: center;
+}
+
+#e404 {
+    color: #a94442;
+    display: block;
+    font-size: 15em;
+    margin-bottom: .2em;
+    text-align: center;
+}
+
 nav {
     display: inline-block;
-    margin-top: 3em;
     width: 18% !important;
 }
 
@@ -52,13 +70,13 @@ nav li.area:hover {
     background-color: #252830;
 }
 
-h1 {
+header > h1 {
     color: #FFF;
     font-size: 2em;
     margin-top: 10px;
 }
 
-h2 {
+header > h2 {
     color: #51586a;
     font-size: 1em;
     text-transform: uppercase;
@@ -67,4 +85,69 @@ h2 {
 hr {
     border-color: #51586a;
     margin-bottom: 3em;
+}
+
+button {
+    color: #1997c6;
+    background-color: transparent;
+    border-color: #1997c6 !important;
+}
+
+button.green {
+    color: #1bc98e;
+    background-color: transparent;
+    border-color: #1bc98e !important;
+}
+
+button.red {
+    color: #a94442;
+    background-color: transparent;
+    border-color: #a94442 !important;
+}
+
+button:hover {
+    color: #ffffff !important;
+    background-color: #1997c6;
+    box-shadow: none;
+}
+
+button.green:hover {
+    background-color: #1bc98e;
+}
+
+button.red:hover {
+    background-color: #a94442;
+}
+
+table {
+    /*border: 1px solid #51586a;*/
+    border-radius: 8px;
+    margin-top: 3em;
+    width: 100%;
+}
+
+td.center, th.center {
+    text-align: center;
+}
+
+table {
+    border: 1px solid #51586a;
+}
+
+table th {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    padding: .6em;
+}
+
+table td {
+    border-top: 1px solid #51586a;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+pre {
+    color: #FFF;
+    background-color: transparent;
 }
