@@ -91,6 +91,7 @@ button, a.button {
     color: #1997c6;
     background-color: transparent;
     border-color: #1997c6 !important;
+    margin: 1em !important;
 }
 
 button.green, a.button.green {
@@ -121,18 +122,15 @@ button.red:hover, a.button.red:hover {
 }
 
 table {
-    /*border: 1px solid #51586a;*/
-    border-radius: 8px;
-    margin-top: 3em;
+    border: 1px solid #51586a;
+    display: table;
+    border-collapse: separate;
+    border-radius: 5px;
     width: 100%;
 }
 
 td.center, th.center {
     text-align: center;
-}
-
-table {
-    border: 1px solid #51586a;
 }
 
 table th {
@@ -144,8 +142,8 @@ table th {
 
 table td {
     border-top: 1px solid #51586a;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    /*padding-top: 10px;
+    padding-bottom: 10px;*/
 }
 
 pre {
@@ -153,6 +151,11 @@ pre {
     background-color: transparent;
 }
 
-.form-group > input {
-    background-color: transparent;
+.form-group > input, .form-group > select {
+    background-color: transparent !important;
+    color: #999 !important;
+}
+
+.form-button {
+    text-align: right;
 }

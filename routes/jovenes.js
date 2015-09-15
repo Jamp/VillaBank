@@ -6,7 +6,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/nuevo', function(req, res, next) {
-  res.render('jovenes/nuevo', { title: 'Nuevo Jóven'});
+    var joven = {
+        id: null,
+        nombres: 'Jaro',
+        apellidos: 'Marval'
+    }
+  res.render('jovenes/nuevo', { title: 'Nuevo Jóven', joven: joven});
 });
 
 module.exports = router;
