@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    a(href='/regiones/nuevo').button.btn.green Nuevo
+
+    table
+        thead
+            tr
+                th.center ID
+                th.center Región
+                th.center Opciones
+
+        tbody
+            if regiones.length == 0
+                tr
+                    td(colspan='6').center No hay regiones creadas
+            else
+                for item in regiones
+                    tr
+                        td.center #{item.id}
+                        td #{item.nombre}
+                        td.center
+                            a(href='/regiones/#{item.id}/editar').button.btn  Editar
+
+                            &nbsp;
+
+                            a(href='/regiones/#{item.id}/borrar').button.btn.red  Borrar
+
+
+    script(src='/javascripts/index.js')
