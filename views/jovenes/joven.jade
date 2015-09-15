@@ -1,36 +1,47 @@
 extends ../layout
 
 block content
-    form(action='/jovenes/create', method='post').col-md-6.col-md-offset-3
+    if joven.id
+        - var action = '/jovenes/update'
+    else
+        - var action = '/jovenes/create'
+
+    form(action="#{action}", method='post').col-md-6.col-md-offset-3
         if errors
             for item in errors
-                div.alert.alert-error item
+                div.alert.alert-error
+                    = item.value
         div.form-group
             input(type="hidden",id="id",name="joven[id]",value="#{joven.id}")
             label(for="nombres") Nombres:
             input(type="text",class="form-control",id="nombres",name="joven[nombres]",placeholder="Nombres",value="#{joven.nombres}")
 
         div.form-group
-            label(for="nombres") Apellidos:
-            input(type="text",class="form-control",id="nombres",name="joven[apellidos]",placeholder="Apellidos",value="#{joven.apellidos}")
+            label(for="apellidos") Apellidos:
+            input(type="text",class="form-control",id="apellidos",name="joven[apellidos]",placeholder="Apellidos",value="#{joven.apellidos}")
 
         div.form-group
-            label(for="nombres") Región:
-            select(class="form-control",id="nombres",name="joven[region]",value="#{joven.region}")
+            label(for="region") Región:
+            input(type='hidden',id='aux_region',value='#{joven.region}')
+            select(class="form-control",id="region",name="joven[region]",value="#{joven.region}")
+                option -- Seleccione --
+                for item in regiones
+                    option(value=item.id, selected=joven.region == item.id) #{item.nombre}
+
+        div.form-group
+            label(for="distrito") Distrito:
+            input(type='hidden',id='aux_distrito',value='#{joven.distrito}')
+            select(class="form-control",id="distrito",name="joven[distrito]",value="#{joven.distrito}")
                 option -- Seleccione --
 
         div.form-group
-            label(for="nombres") Distrito:
-            select(class="form-control",id="nombres",name="joven[distrito]",value="#{joven.distrito}")
+            label(for="grupo") Grupo:
+            input(type='hidden',id='aux_grupo',value='#{joven.grupo}')
+            select(class="form-control",id="grupo",name="joven[grupo]")
                 option -- Seleccione --
-
-        div.form-group
-            label(for="nombres") Grupo:
-            select(class="form-control",id="nombres",name="joven[grupo]")
-                option -- Seleccione --
-                for item in grupos
-                    option(selected=joven.grupo == item.id) #{item.nombre}
 
         div.form-group.form-button
             a(href='/jovenes').button.btn.red Cancelar
             button(type='submit').btn.green Guardar
+
+    script(src='/javascripts/listas.js')

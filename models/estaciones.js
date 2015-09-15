@@ -3,13 +3,13 @@ module.exports = function(sequelize, DataTypes) {
         'estaciones',
         { nombre: {
             type: DataTypes.STRING,
-            validate: { notEmpty: {msg: "-> Falta Nombre"} }
+            validate: { notEmpty: {msg: "Falta Nombre"} }
         }, maximo: {
             type: DataTypes.INTEGER,
-            validate: { notEmpty: {msg: "-> Falta Màximo"} }
+            validate: { notEmpty: {msg: "Falta Màximo"} }
         }, tipo: {
             type: DataTypes.BOOLEAN,
-            validate: { notEmpty: {msg: "-> Falta Tipo"} }
+            validate: { notEmpty: {msg: "Falta Tipo"} }
         }
     }
     );

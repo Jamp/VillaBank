@@ -1,17 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.render('jovenes/index', { title: 'Jóvenes'});
-});
+var jovenesController = require('../controller/jovenes_controller');
 
-router.get('/nuevo', function(req, res, next) {
-    var joven = {
-        id: null,
-        nombres: 'Jaro',
-        apellidos: 'Marval'
-    }
-  res.render('jovenes/nuevo', { title: 'Nuevo Jóven', joven: joven});
-});
+router.get('/', jovenesController.index);
+router.get('/nuevo', jovenesController.nuevo);
+router.get('/:jovenId(\\d+)/editar', jovenesController.editar);
+
+router.get('/:jovenId(\\d+)/borrar', jovenesController.borrar);
+
+router.post('/create', jovenesController.create);
+router.post('/update', jovenesController.update);
 
 module.exports = router;

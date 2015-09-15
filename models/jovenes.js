@@ -3,11 +3,11 @@ module.exports = function(sequelize, DataTypes) {
         'jovenes',
         { nombres: {
             type: DataTypes.STRING,
-            validate: { notEmpty: {msg: "-> Falta Nombres"} }
+            validate: { notEmpty: {msg: "Falta Nombres"} }
         },
         apellidos: {
             type: DataTypes.STRING,
-            validate: { notEmpty: {msg: "-> Falta Apellidos"} }
+            validate: { notEmpty: {msg: "Falta Apellidos"} }
         }
     });
 };

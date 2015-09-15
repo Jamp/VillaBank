@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define(
-        'grupos',
+        'grupo',
         { nombre: {
             type: DataTypes.STRING,
-            validate: { notEmpty: {msg: "-> Falta Nombre"} }
+            validate: { notEmpty: {msg: "Falta Nombre"} }
         }
     }
     );

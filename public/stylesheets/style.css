@@ -159,3 +159,21 @@ pre {
 .form-button {
     text-align: right;
 }
+
+.alert {
+    background-color: #1997c6;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    color: #ffffff !important;
+    margin: 0 0 .3em 0 !important;
+    padding: .3em;
+    text-shadow: none !important;
+}
+
+.alert-success {
+    background-color: #1bc98e;
+}
+
+.alert-error {
+    background-color: #a94442;
+}

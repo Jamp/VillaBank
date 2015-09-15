@@ -70,12 +70,12 @@ sequelize.sync().then(function () {
             ]).then(function (){
                 console.log('Creando Región');
                 Distritos.bulkCreate( [
-                    { nombre: 'Paraguaná', RegionesId: 1 },
-                    { nombre: 'Manaure', RegionesId: 1 },
+                    { nombre: 'Paraguaná', regionId: 1 },
+                    { nombre: 'Manaure', regionId: 1 },
                 ]).then(function () {
                     console.log('Creando Distritos');
                     Grupos.bulkCreate( [
-                        { nombre: 'Nazaret', DistritoId: 1 }
+                        { nombre: 'Nazaret', distritoId: 1 }
                     ]).then(function () {
                         console.log('Creando Grupo');
                     });

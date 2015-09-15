@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var jovenes = require('./routes/jovenes');
+var regiones = require('./routes/regiones');
+var distritos = require('./routes/distritos');
 
 var app = express();
 
@@ -18,12 +20,15 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/jovenes', jovenes);
+app.use('/regiones', regiones);
+app.use('/distritos', distritos);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

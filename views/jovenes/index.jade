@@ -14,23 +14,23 @@ block content
                 th.center Opciones
 
         tbody
-            tr
-                td.center 1
-                td Jaro Marval
-                td.center Falcón
-                td.center Paraguaná
-                td.center Nazaret
-                td.center
-                    button.btn  Editar
-                    &nbsp;
-                    button.btn.red  Borrar
-            tr
-                td.center 2
-                td Simón Bolívar
-                td.center Falcón
-                td.center Paraguaná
-                td.center Nazaret
-                td.center
-                    button.btn  Editar
-                    &nbsp;
-                    button.btn.red  Borrar
+            if jovenes.length == 0
+                tr
+                    td(colspan='6').center No hay jóvenes inscritos
+            else
+                for item in jovenes
+                    tr
+                        td.center #{item.id}
+                        td #{item.nombres} #{item.apellidos}
+                        td.center #{item.grupo.distrito.region.nombre}
+                        td.center #{item.grupo.distrito.nombre}
+                        td.center #{item.grupo.nombre}
+                        td.center
+                            a(href='/jovenes/#{item.id}/editar').button.btn  Editar
+
+                            &nbsp;
+
+                            a(href='/jovenes/#{item.id}/borrar').button.btn.red  Borrar
+
+
+    script(src='/javascripts/index.js')
