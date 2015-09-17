@@ -55,6 +55,7 @@ Distritos.belongsTo(Regiones);
 Regiones.hasMany(Distritos);
 
 // Modelos
+exports.sequelize = sequelize;
 exports.Jovenes = Jovenes;
 exports.Estaciones = Estaciones;
 exports.Grupos = Grupos;

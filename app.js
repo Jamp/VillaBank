@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var jovenes = require('./routes/jovenes');
 var regiones = require('./routes/regiones');
 var distritos = require('./routes/distritos');
+var banco = require('./routes/banco');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/', routes);
 app.use('/jovenes', jovenes);
 app.use('/regiones', regiones);
 app.use('/distritos', distritos);
+app.use('/banco', banco);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
