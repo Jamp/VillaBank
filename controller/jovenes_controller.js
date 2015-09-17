@@ -123,12 +123,12 @@ exports.create = function (req, res) {
             });
         }
     );
-}
+};
 
 exports.update = function (req, res) {
     var jovenId = req.params.jovenId;
 
-    models.Jovenes.find(jovenId)
+    models.Jovenes.findById(jovenId)
     .then(function (joven) {
         if (joven) {
             joven.updateAttributes({
@@ -140,4 +140,51 @@ exports.update = function (req, res) {
             });
         }
     });
-}
+};
+
+exports.multipass = function (req, res) {
+    var jovenId = req.params.jovenId;
+
+    models.Jovenes.findById(jovenId)
+    .then(function (joven) {
+        qr = require('qr-image').image(joven.id, { type: 'png', ec_level: 'H', size: 5, margin: 0 });
+        res.type('png');
+        qr.pipe(res);
+    });
+};
+
+exports.get = function (req, res) {
+    var options = {
+        where: {
+            id: req.params.jovenId
+        },
+        include: [
+            {
+                model: models.Grupos,
+                include: [
+                    {
+                        model: models.Distritos,
+                        include: [
+                            models.Regiones
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    models.Jovenes.find(options)
+    .then(function (joven){
+            var datos = {
+                id: joven.id,
+                nombres: joven.nombres,
+                apellidos: joven.apellidos,
+                region: joven.grupo.distrito.region.nombre,
+                distrito: joven.grupo.distrito.nombre,
+                grupo: joven.grupo.nombre,
+                saldo: joven.saldo
+            }
+            res.setHeader('Content-Type', 'application/json');
+            res.send(datos);
+        });
+};

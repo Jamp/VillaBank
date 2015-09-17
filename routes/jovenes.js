@@ -12,4 +12,7 @@ router.get('/:jovenId(\\d+)/borrar', jovenesController.borrar);
 router.post('/create', jovenesController.create);
 router.post('/update', jovenesController.update);
 
+router.get('/multipass/:jovenId(\\d+)', jovenesController.multipass);
+router.get('/:jovenId(\\d+)', jovenesController.get);
+
 module.exports = router;
