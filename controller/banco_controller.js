@@ -4,9 +4,9 @@ var cobrar = 30;
 
 exports.index = function (req, res) {
     var personas = String(req.query.personas).split(',');
-    var monto = -30; // Cobro
+    var monto = -cobrar; // Cobro
     if (req.params.operacion === 'pagar') {
-        monto = 20; // Pago
+        monto = pagar; // Pago
     }
 
     var resultado = {

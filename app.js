@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express.io');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,9 +9,11 @@ var routes = require('./routes/index');
 var jovenes = require('./routes/jovenes');
 var regiones = require('./routes/regiones');
 var distritos = require('./routes/distritos');
+var estaciones = require('./routes/estaciones');
 var banco = require('./routes/banco');
 
 var app = express();
+app.http().io();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +32,7 @@ app.use('/', routes);
 app.use('/jovenes', jovenes);
 app.use('/regiones', regiones);
 app.use('/distritos', distritos);
+app.use('/estaciones', estaciones);
 app.use('/banco', banco);
 
 // catch 404 and forward to error handler

@@ -9,6 +9,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             validate: { notEmpty: {msg: "Falta Apellidos"} }
         },
+        sexo: {
+            type: DataTypes.BOOLEAN
+        },
         saldo: {
             type: DataTypes.INTEGER,
             allowNull: true,
