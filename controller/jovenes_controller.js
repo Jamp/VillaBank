@@ -29,6 +29,7 @@ exports.nuevo = function (req, res) {
         id: false,
         nombres: '',
         apellidos: '',
+        sexo: '',
         region: '',
         distrito: '',
         grupo: ''
@@ -67,6 +68,7 @@ exports.editar = function (req, res) {
                 id: joven.id,
                 nombres: joven.nombres,
                 apellidos: joven.apellidos,
+                sexo: joven.sexo,
                 region: joven.grupo.distrito.region.id,
                 distrito: joven.grupo.distrito.id,
                 grupo: joven.grupo.id
@@ -92,6 +94,7 @@ exports.create = function (req, res) {
     var jovenes = models.Jovenes.build({
         nombres: req.body.joven.nombres,
         apellidos: req.body.joven.apellidos,
+        sexo: Number(req.body.joven.sexo),
         grupoId: req.body.joven.grupo
     });
 
@@ -126,7 +129,7 @@ exports.create = function (req, res) {
 };
 
 exports.update = function (req, res) {
-    var jovenId = req.params.jovenId;
+    var jovenId = req.body.joven.id;
 
     models.Jovenes.findById(jovenId)
     .then(function (joven) {
@@ -134,6 +137,7 @@ exports.update = function (req, res) {
             joven.updateAttributes({
                 nombres: req.body.joven.nombres,
                 apellidos: req.body.joven.apellidos,
+                sexo: Number(req.body.joven.sexo),
                 grupoId: req.body.joven.grupo
             }).then(function (){
                 res.redirect('/jovenes');
@@ -196,4 +200,39 @@ exports.get = function (req, res) {
         // HTTP status 404: NotFound
         res.status(404).send('Not found');
     }
+};
+
+exports.view = function (req, res) {
+    var options = {
+        where: {
+            id: req.params.jovenId
+        },
+        include: [
+            {
+                model: models.Grupos,
+                include: [
+                    {
+                        model: models.Distritos,
+                        include: [
+                            models.Regiones
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    models.Jovenes.find(options)
+    .then(function (joven){
+        var datos = {
+            id: joven.id,
+            nombres: joven.nombres,
+            apellidos: joven.apellidos,
+            sexo: joven.sexo,
+            region: joven.grupo.distrito.region.nombre,
+            distrito: joven.grupo.distrito.nombre,
+            grupo: joven.grupo.nombre
+        }
+        res.render('jovenes/ver', { title: 'Ver Jóven', joven: datos });
+    });
 };

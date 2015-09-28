@@ -21,9 +21,16 @@ block content
             input(type="text",class="form-control",id="apellidos",name="joven[apellidos]",placeholder="Apellidos",value="#{joven.apellidos}")
 
         div.form-group
+            label(for="region") Sexo:
+            select(class="form-control",id="sexo",name="joven[sexo]")
+                option -- Seleccione --
+                option(value=0, selected=joven.sexo == false) Femenino
+                option(value=1, selected=joven.sexo == true) Masculino
+
+        div.form-group
             label(for="region") Región:
             input(type='hidden',id='aux_region',value='#{joven.region}')
-            select(class="form-control",id="region",name="joven[region]",value="#{joven.region}")
+            select(class="form-control",id="region",name="joven[region]")
                 option -- Seleccione --
                 for item in regiones
                     option(value=item.id, selected=joven.region == item.id) #{item.nombre}
@@ -31,7 +38,7 @@ block content
         div.form-group
             label(for="distrito") Distrito:
             input(type='hidden',id='aux_distrito',value='#{joven.distrito}')
-            select(class="form-control",id="distrito",name="joven[distrito]",value="#{joven.distrito}")
+            select(class="form-control",id="distrito",name="joven[distrito]")
                 option -- Seleccione --
 
         div.form-group

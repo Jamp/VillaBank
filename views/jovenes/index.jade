@@ -11,7 +11,7 @@ block content
                 th.center Región
                 th.center Distrito
                 th.center Grupo
-                th.center QR
+                th.center Saldo
                 th.center Opciones
 
         tbody
@@ -26,9 +26,12 @@ block content
                         td.center #{item.grupo.distrito.region.nombre}
                         td.center #{item.grupo.distrito.nombre}
                         td.center #{item.grupo.nombre}
+                        td.center #{item.saldo}
                         td.center
-                            img(src='/jovenes/multipass/#{item.id}')
-                        td.center
+                            a(href='/jovenes/ver/#{item.id}',target='_blank').button.btn.green QR
+
+                            &nbsp;
+
                             a(href='/jovenes/#{item.id}/editar').button.btn  Editar
 
                             &nbsp;

@@ -1,0 +1,28 @@
+doctype html
+html(lang='es')
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/ubuntu-font.css')
+        style
+            | * { font-family: 'Ubuntu', sans-serif; }
+            | div { border: 1px solid black; margin 0 auto; padding: 2em; width: 300px; }
+            | img { margin-top: 1em; }
+    body
+        div
+            p
+                b Nombres:
+                &nbsp #{joven.nombres}
+            p
+                b Apellidos:
+                &nbsp #{joven.apellidos}
+            p
+                b Grupo:
+                &nbsp #{joven.grupo}
+            p
+                b Distrito:
+                &nbsp #{joven.distrito}
+            p
+                b Región:
+                &nbsp #{joven.region}
+            center
+                img(src='/jovenes/multipass/#{joven.id}')
