@@ -3,7 +3,7 @@ var pagar = 20;
 var cobrar = 30;
 
 exports.index = function (req, res) {
-    var personas = String(req.query.personas).split(',');
+    var personas = String(req.body.personas).split(',');
     var monto = -cobrar; // Cobro
     if (req.params.operacion === 'pagar') {
         monto = pagar; // Pago
