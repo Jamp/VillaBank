@@ -1,5 +1,5 @@
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 body {
@@ -176,4 +176,10 @@ pre {
 
 .alert-error {
     background-color: #a94442;
+}
+
+.form-group > select {
+    appearance: none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
 }
