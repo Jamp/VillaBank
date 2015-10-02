@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+    if estacion.id
+        - var action = '/estaciones/update'
+    else
+        - var action = '/estaciones/create'
+
+    form(action="#{action}", method='post').col-md-6.col-md-offset-3
+        if errors
+            for item in errors
+                div.alert.alert-error
+                    = item.value
+        div.form-group
+            input(type="hidden",id="id",name="estacion[id]",value="#{estacion.id}")
+            label(for="nombre") Nombre:
+            input(type="text",class="form-control",id="nombre",name="estacion[nombre]",placeholder="Nombre",value="#{estacion.nombre}")
+
+        div.form-group
+            label(for="maximo") Máximo:
+            input(type="text",class="form-control",id="maximo",name="estacion[maximo]",placeholder="Máximo",value="#{estacion.maximo}")
+
+        div.form-group
+            label(for="tipo") Tipo:
+            select(class="form-control",id="tipo",name="estacion[tipo]")
+                option -- Seleccione --
+                option(value=0, selected=estacion.tipo == false) Cobro
+                option(value=1, selected=estacion.tipo == true) Pago
+
+        div.form-group.form-button
+            a(href='/estaciones').button.btn.red Cancelar
+            button(type='submit').btn.green Guardar

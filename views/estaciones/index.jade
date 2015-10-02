@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    a(href='/estaciones/nuevo').button.btn.green Nuevo
+
+    table
+        thead
+            tr
+                th.center ID
+                th.center Nombre
+                th.center Máximo
+                th.center Tipo
+                th.center Operaciones
+
+        tbody
+            if estaciones.length == 0
+                tr
+                    td(colspan='5').center No hay estaciones creadas
+            else
+                for item in estaciones
+                    tr
+                        td.center #{item.id}
+                        td #{item.nombre}
+                        td.center #{item.maximo}
+                        td.center
+                            if item.tipo
+                                i(title="Pagar").fa.fa-shopping-cart.fa-2x
+                            else
+                                i(title="Cobrar").fa.fa-university.fa-2x
+                        td.center
+                            a(href='/estaciones/#{item.id}/editar').button.btn  Editar
+                            a(href='/estaciones/#{item.id}/borrar').button.btn.red  Borrar
+
+    script(src='/javascripts/index.js')

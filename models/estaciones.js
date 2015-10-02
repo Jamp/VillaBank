@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
             validate: { notEmpty: {msg: "Falta Nombre"} }
         }, maximo: {
             type: DataTypes.INTEGER,
-            validate: { notEmpty: {msg: "Falta Màximo"} }
+            validate: { notEmpty: {msg: "Falta Máximo"} }
         }, tipo: {
             type: DataTypes.BOOLEAN,
             validate: { notEmpty: {msg: "Falta Tipo"} }
