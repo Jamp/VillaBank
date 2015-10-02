@@ -157,51 +157,6 @@ exports.multipass = function (req, res) {
     });
 };
 
-exports.get = function (req, res) {
-    var salida =  req.query.salida,
-        estacion = req.query.estacion;
-
-    if (salida == 'json') {
-        var options = {
-            where: {
-                id: req.params.jovenId
-            },
-            include: [
-                {
-                    model: models.Grupos,
-                    include: [
-                        {
-                            model: models.Distritos,
-                            include: [
-                                models.Regiones
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-
-        models.Jovenes.find(options)
-        .then(function (joven){
-                var datos = {
-                    id: joven.id,
-                    nombres: joven.nombres,
-                    apellidos: joven.apellidos,
-                    sexo: joven.sexo,
-                    region: joven.grupo.distrito.region.nombre,
-                    distrito: joven.grupo.distrito.nombre,
-                    grupo: joven.grupo.nombre,
-                    saldo: joven.saldo
-                }
-                res.setHeader('Content-Type', 'application/json');
-                res.send(datos);
-            });
-    } else {
-        // HTTP status 404: NotFound
-        res.status(404).send('Not found');
-    }
-};
-
 exports.view = function (req, res) {
     var options = {
         where: {

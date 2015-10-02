@@ -2,7 +2,7 @@ var models = require('../models/models.js');
 var pagar = 20;
 var cobrar = 30;
 
-exports.index = function (req, res) {
+exports.operacion = function (req, res) {
     var personas = String(req.body.personas).split(',');
     var monto = -cobrar; // Cobro
     if (req.params.operacion === 'pagar') {
@@ -37,4 +37,50 @@ exports.index = function (req, res) {
 
     };
 
+};
+
+
+exports.cliente = function (req, res) {
+    var salida =  req.query.salida,
+        estacion = req.query.estacion;
+
+    if (salida == 'json') {
+        var options = {
+            where: {
+                id: req.params.jovenId
+            },
+            include: [
+                {
+                    model: models.Grupos,
+                    include: [
+                        {
+                            model: models.Distritos,
+                            include: [
+                                models.Regiones
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        models.Jovenes.find(options)
+        .then(function (joven){
+                var datos = {
+                    id: joven.id,
+                    nombres: joven.nombres,
+                    apellidos: joven.apellidos,
+                    sexo: joven.sexo,
+                    region: joven.grupo.distrito.region.nombre,
+                    distrito: joven.grupo.distrito.nombre,
+                    grupo: joven.grupo.nombre,
+                    saldo: joven.saldo
+                }
+                res.setHeader('Content-Type', 'application/json');
+                res.send(datos);
+            });
+    } else {
+        // HTTP status 404: NotFound
+        res.status(404).send('Not found');
+    }
 };
