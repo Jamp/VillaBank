@@ -91,12 +91,14 @@ exports.borrar = function (req, res) {
 };
 
 exports.create = function (req, res) {
-    var jovenes = models.Jovenes.build({
+    var joven = {
         nombres: req.body.joven.nombres,
         apellidos: req.body.joven.apellidos,
         sexo: Number(req.body.joven.sexo),
         grupoId: req.body.joven.grupo
-    });
+    };
+
+    var jovenes = models.Jovenes.build(joven);
 
     jovenes
     .validate()
@@ -106,7 +108,7 @@ exports.create = function (req, res) {
                 models.Regiones.findAll().then(function (regiones) {
                     res.render('jovenes/joven', {
                         title: 'Nuevo Jóven',
-                        joven: req.body.joven,
+                        joven: joven,
                         regiones: regiones,
                         errors: err.errors
                     });
@@ -122,7 +124,7 @@ exports.create = function (req, res) {
     ).catch(
         function () {
             models.Regiones.findAll().then(function (regiones) {
-                res.render('jovenes/joven', { title: 'Nuevo Jóven', joven: req.body.joven, errors: err.errors });
+                res.render('jovenes/joven', { title: 'Nuevo Jóven', joven: joven, errors: err.errors });
             });
         }
     );
