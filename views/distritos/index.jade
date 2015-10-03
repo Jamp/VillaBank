@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    a(href='/distritos/nuevo').button.btn.green Nuevo
+
+    table
+        thead
+            tr
+                th.center ID
+                th.center Distrito
+                th.center Región
+                th.center Opciones
+
+        tbody
+            if distritos.length == 0
+                tr
+                    td(colspan='7').center No hay distritos creadas
+            else
+                for item in distritos
+                    tr
+                        td.center #{item.id}
+                        td #{item.nombre}
+                        td.center #{item.region.nombre}
+                        td.center
+                            a(href='/distritos/#{item.id}/editar').button.btn  Editar
+                            a(href='/distritos/#{item.id}/borrar').button.btn.red  Borrar
+
+    script(src='/javascripts/index.js')

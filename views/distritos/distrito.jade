@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    if distrito.id
+        - var action = '/distritos/update'
+    else
+        - var action = '/distritos/create'
+
+    form(action="#{action}", method='post').col-md-6.col-md-offset-3
+        if errors
+            for item in errors
+                div.alert.alert-error
+                    = item.value
+
+        div.form-group
+            label(for="region") Región:
+            input(type='hidden',id='aux_region',value='#{distrito.region}')
+            select(class="form-control",id="region",name="distrito[region]")
+                option -- Seleccione --
+                for item in regiones
+                    option(value=item.id, selected=distrito.region == item.id) #{item.nombre}
+
+        div.form-group
+            input(type="hidden",id="id",name="distrito[id]",value="#{distrito.id}")
+            label(for="nombre") Nombre:
+            input(type="text",class="form-control",id="nombre",name="distrito[nombre]",placeholder="Nombre",value="#{distrito.nombre}")
+
+        div.form-group.form-button
+            a(href='/distritos').button.btn.red Cancelar
+            button(type='submit').btn.green Guardar
