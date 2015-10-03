@@ -2,7 +2,9 @@ var models = require('../models/models.js');
 
 exports.get = function (req, res) {
     var options = {
-        regionId: req.regionId
+        where: {
+            regionId: req.params.regionId
+        }
     };
 
     models.Distritos.findAll(options).then(function (distritos) {
