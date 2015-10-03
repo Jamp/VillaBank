@@ -36,7 +36,7 @@ exports.edit = function (req, res) {
     });
 };
 
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
     var regionId = req.params.regionId;
 
     models.Regiones.findById(regionId)
@@ -46,4 +46,48 @@ exports.delete = function(req, res) {
             res.redirect('/regiones');
         });
     });
+};
+
+
+exports.create = function (req, res) {
+    var region = { nombre: req.body.region.nombre };
+
+    var regiones = models.Regiones.build(region);
+
+    regiones
+    .validate()
+    .then(
+        function (err) {
+            if (err) {
+                res.render('regiones/region', { title: 'Nueva Región', region: region, errors: err.errors });
+            } else {
+                regiones
+                .save()
+                .then(function () {
+                    res.redirect('/regiones');
+                });
+            }
+    }).catch(
+        function (err) {
+            res.render('regiones/region', { title: 'Nueva Región', region: region, errors: err.errors });
+        }
+    );
+};
+
+exports.update = function (req, res) {
+    var regionId = req.body.region.id;
+
+    models.Regiones.findById(regionId)
+    .then(
+        function (region) {
+            if (region) {
+                region.updateAttributes({
+                    id: regionId,
+                    nombre: req.body.region.nombre
+                }).then(function () {
+                    res.redirect('/regiones');
+                });
+            }
+        }
+    );
 };

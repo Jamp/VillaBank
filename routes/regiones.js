@@ -8,8 +8,8 @@ router.get('/nuevo', regionesController.new);
 router.get('/:regionId(\\d+)/editar', regionesController.edit);
 router.get('/:regionId(\\d+)/borrar', regionesController.delete);
 
-//router.post('/create', regionesController.create);
-//router.post('/update', regionesController.update);
+router.post('/create', regionesController.create);
+router.post('/update', regionesController.update);
 
 
 router.get('/:regionId(\\d+)/distritos', regionesController.get);
