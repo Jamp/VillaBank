@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var jovenes = require('./routes/jovenes');
 var regiones = require('./routes/regiones');
 var distritos = require('./routes/distritos');
+var grupos = require('./routes/grupos');
 var estaciones = require('./routes/estaciones');
 var banco = require('./routes/banco');
 
@@ -30,6 +31,7 @@ app.use('/', routes);
 app.use('/jovenes', jovenes);
 app.use('/regiones', regiones);
 app.use('/distritos', distritos);
+app.use('/grupos', grupos);
 app.use('/estaciones', estaciones);
 app.use('/banco', banco);
 

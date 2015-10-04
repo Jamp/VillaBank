@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+    if grupo.id
+        - var action = '/grupos/update'
+    else
+        - var action = '/grupos/create'
+
+    form(action="#{action}", method='post').col-md-6.col-md-offset-3
+        if errors
+            for item in errors
+                div.alert.alert-error
+                    = item.value
+
+        div.form-group
+            label(for="region") Región:
+            input(type='hidden',id='aux_region',value='#{grupo.region}')
+            select(class="form-control",id="region",name="grupo[region]")
+                option -- Seleccione --
+                for item in regiones
+                    option(value=item.id, selected=grupo.region == item.id) #{item.nombre}
+
+        div.form-group
+            label(for="distrito") Distrito:
+            input(type='hidden',id='aux_distrito',value='#{grupo.distrito}')
+            select(class="form-control",id="distrito",name="grupo[distrito]")
+                option -- Seleccione --
+
+        div.form-group
+            input(type="hidden",id="id",name="grupo[id]",value="#{grupo.id}")
+            label(for="nombre") Nombre:
+            input(type="text",class="form-control",id="nombre",name="grupo[nombre]",placeholder="Nombres",value="#{grupo.nombre}")
+
+        div.form-group.form-button
+            a(href='/grupos').button.btn.red Cancelar
+            button(type='submit').btn.green Guardar
+
+    script(src='/javascripts/listas.js')
