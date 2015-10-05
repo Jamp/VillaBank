@@ -1,7 +1,41 @@
 extends layout
 
 block content
-    p Welcome to #{title}
+    div.container
+        div.row
+            div.box.green
+                div.content
+                    span.title Estaciones
+                    span.content 16
+                img(src='images/graph.png')
+
+            div.box.red
+                div.content
+                    span.title Jóvenes
+                    span.content 128
+                img(src='images/graph.png')
+
+            div.box.yellow
+                div.content
+                    span.title LobosCoin
+                    span#sup 1.600
+                    span#sub.positive 60
+                img(src='images/graph.png')
+
+        div.row
+            div.col-md-2
+                div#placeholder1(style='height: 500px;')
+
+            div.col-md-2
+                div#placeholder2(style='height: 500px;')
+
+            div.col-md-2
+                div#placeholder3(style='height: 500px;')
+
+
+    script(src='lib/jquery/dist/jquery.min.js')
+    script(src='lib/Flot/jquery.flot.js')
+    script(src='lib/Flot/jquery.flot.pie.js')
 
     script(src='/lib/socket.io/socket.io.js')
     script(src='/javascripts/socket.js')

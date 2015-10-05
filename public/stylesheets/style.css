@@ -183,3 +183,78 @@ pre {
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
 }
+
+.box {
+    border-radius: 3px;
+    color: #FFF;
+    display: inline-block;
+    margin: 0 4% 0 1%;
+    padding: 0;
+    position: relative;
+    width: 20%
+}
+
+.box > .content {
+    padding: .5em .5em .8em .5em;
+}
+
+.box .title {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.box .content, .box #sup {
+    display: block;
+    font-size: 30px;
+}
+
+.box #sup {
+    display: inline-block;
+}
+
+.box #sub {
+    display: inline-block;
+    font-size: 18px;
+    margin-left: .5em;
+}
+
+#sub:after{
+    content: ' %';
+}
+#sup:after {
+    content: ' £';
+}
+
+.positive:before {
+    font-family: FontAwesome;
+    content: ' ';
+}
+
+.negative:before {
+    font-family: FontAwesome;
+    content: ' ';
+}
+
+.box > img {
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    padding-top: 1.6em;
+    width: 100%;
+}
+
+.box.green {
+    background-color: #1bc98e;
+}
+
+.box.red {
+    background-color: #e64759;
+}
+
+.box.purple {
+    background-color: #9f86ff;
+}
+
+.box.yellow {
+    background-color: #e4d836;
+}

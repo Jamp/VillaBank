@@ -11,5 +11,5 @@ exports.index = function (req, res, next) {
 
     /// Socket ///
 
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Overview', pretty: true });
 }
