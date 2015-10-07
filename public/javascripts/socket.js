@@ -1,51 +1,34 @@
 var socket = io();
-var placeholder1 = $("#placeholder1");
-var placeholder2 = $("#placeholder2");
-var placeholder3 = $("#placeholder3");
 
-var data = [],
-series = 2;
+var data = [];
+data[0] = {
+    value: Math.floor(Math.random() * 100) + 1,
+    color: "#1bc98e",
+    label: "Estaciones vacías"
+};
+data[1] = {
+    value: Math.floor(Math.random() * 100) + 1,
+    color: "#1ca8dd",
+    label: "Estaciones Gente"
+};
 
-for (var i = 0; i < series; i++) {
-    data[i] = {
-        label: "Series" + (i + 1),
-        data: Math.floor(Math.random() * 100) + 1
-    }
-}
+$(function () {
+    var placeholder = document.getElementById('placeholder1').getContext("2d");
+    new Chart(placeholder).Doughnut(data, {responsive : true});
+})
 
+/* {
+    value: 300,
+    color:"#F7464A",
+    highlight: "#FF5A5E",
+    label: "Red"
+},
+{
+    value: 50,
+    color: "#46BFBD",
+    highlight: "#5AD3D1",
+    label: "Green"
+}, */
 
 // Azul #1ca8dd
 // Verde #1bc98e
-
-
-$("#title").text("Donut Hole");
-$("#description").text("A donut hole can be added.");
-
-$.plot(placeholder1, data, {
-    series: {
-        pie: {
-            innerRadius: .6,
-            show: true,
-            fill: .75
-        }
-    },
-    colors: ["#1ca8dd", "#1bc98e"]
-});
-
-$.plot(placeholder2, data, {
-    series: {
-        pie: {
-            innerRadius: 0.5,
-            show: true
-        }
-    }
-});
-
-$.plot(placeholder3, data, {
-    series: {
-        pie: {
-            innerRadius: 0.5,
-            show: true
-        }
-    }
-});

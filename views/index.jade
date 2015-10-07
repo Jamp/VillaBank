@@ -24,7 +24,7 @@ block content
 
         div.row
             div.col-md-2
-                div#placeholder1(style='height: 500px;')
+                canvas(id="placeholder1",width="500",height="500")
 
             div.col-md-2
                 div#placeholder2(style='height: 500px;')
@@ -33,9 +33,7 @@ block content
                 div#placeholder3(style='height: 500px;')
 
 
-    script(src='lib/jquery/dist/jquery.min.js')
-    script(src='lib/Flot/jquery.flot.js')
-    script(src='lib/Flot/jquery.flot.pie.js')
+    script(src='lib/Chart.js/Chart.min.js')
 
     script(src='/lib/socket.io/socket.io.js')
     script(src='/javascripts/socket.js')
