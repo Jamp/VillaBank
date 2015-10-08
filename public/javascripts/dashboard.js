@@ -25,19 +25,19 @@ $(function () {
 
     var data = [
         {
-            value: 16,
+            value: 13,
             color: "#1bc98e",
             label: "Estaciones vacías"
         },
         {
-            value: 0,
+            value: 3,
             color: "#1ca8dd",
             label: "Estaciones Gente"
         }
     ];
 
     var chart = document.getElementById('placeholder1').getContext("2d");
-    var jj = new Chart(chart).Doughnut(data, {responsive : true});
+    var jj = new Chart(chart).Doughnut(data, {responsive : true, segmentShowStroke : true, segmentStrokeColor : "#252830"});
 
     socket.on('recibiendoData', function (data){
 
