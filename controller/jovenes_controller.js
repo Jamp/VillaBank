@@ -1,4 +1,12 @@
 var models = require('../models/models.js');
+var ws = require('../bin/www');
+
+function nuevoJoven() {
+    models.Jovenes.count()
+    .then(function (numero){
+        ws.io.sockets.emit('nuevoJovenes', numero);
+    });
+}
 
 exports.index = function (req, res) {
     var options = {
@@ -117,6 +125,7 @@ exports.create = function (req, res) {
                 jovenes
                 .save()
                 .then(function (){
+                    nuevoJoven();
                     res.redirect('/jovenes');
                 });
             }

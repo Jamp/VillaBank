@@ -6,24 +6,24 @@ block content
             div.box.green
                 div.content
                     span.title Estaciones
-                    span.content 16
+                    span#nEstaciones.content #{nEstaciones}
                 img(src='images/graph.png')
 
             div.box.red
                 div.content
                     span.title Jóvenes
-                    span.content 128
-                img(src='images/graph.png')
+                    span#nJovenes.content #{nJovenes}
+                img(src='images/graph2.png')
 
             div.box.yellow
                 div.content
                     span.title LobosCoin
                     span#sup 1.600
                     span#sub.positive 60
-                img(src='images/graph.png')
+                img(src='images/graph.png',id="mirror")
 
         div.row
-            div.col-md-2
+            div#chart.col-md-2
                 canvas(id="placeholder1",width="500",height="500")
 
             div.col-md-2
@@ -35,5 +35,5 @@ block content
 
     script(src='lib/Chart.js/Chart.min.js')
 
-    script(src='/lib/socket.io/socket.io.js')
+    script(src='/socket.io/socket.io.js')
     script(src='/javascripts/socket.js')

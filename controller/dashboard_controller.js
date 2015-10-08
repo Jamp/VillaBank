@@ -1,15 +1,23 @@
-var socket = require('../bin/www');
+var ws = require('../bin/www');
 var models = require('../models/models.js');
 
 exports.index = function (req, res, next) {
-    console.log(socket.io);
+
     /// Socket ///
 
-    socket.io.on('connection', function (socket) {
+    ws.io.on('connection', function (socket) {
         console.log('Conectado!!!');
     });
 
     /// Socket ///
 
-    res.render('index', { title: 'Overview', pretty: true });
+    models.Jovenes.count()
+    .then(function (jovenes) {
+
+        models.Estaciones.count()
+        .then(function (estaciones){
+            res.render('index', { title: 'Overview', nJovenes: jovenes, nEstaciones: estaciones });
+        });
+
+    });
 }
