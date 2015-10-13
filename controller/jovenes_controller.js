@@ -4,7 +4,7 @@ var ws = require('../bin/www');
 function nuevoJoven() {
     models.Jovenes.count()
     .then(function (numero){
-        ws.io.sockets.emit('nuevoJovenes', numero);
+        ws.io.sockets.emit('nuevoJoven', numero);
     });
 }
 

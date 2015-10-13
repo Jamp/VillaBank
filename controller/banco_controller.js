@@ -1,6 +1,28 @@
 var models = require('../models/models.js');
+var ws = require('../bin/www');
 var pagar = 20;
 var cobrar = 30;
+
+function movimientoMonetario(monto) {
+    var insert = {
+            coin: monto
+        };
+
+        var banco = models.Banco.build(insert);
+        banco
+        .validate()
+        .then(
+            function (err) {
+                if (!err) {
+                    banco
+                    .save()
+                    .then(function () {
+                        console.log('Insertando coin');
+                    });
+                }
+            }
+        )
+}
 
 exports.operacion = function (req, res) {
     var personas = String(req.body.personas).split(',');
@@ -22,6 +44,7 @@ exports.operacion = function (req, res) {
                 joven.updateAttributes({
                     saldo: joven.saldo + monto
                 }).then(function (){
+                    movimientoMonetario(monto);
                     if (i == personas.length) {
                         res.send(resultado);
                     }

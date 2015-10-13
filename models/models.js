@@ -2,8 +2,7 @@ var path = require('path');
 
 // Postgres DATABASE_URL = postgres://user:passwd@host:port/database
 // SQLite   DATABASE_URL = sqlite://:@:/
-//var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/i);
-var url = "sqlite://:@:/".match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/i);
+var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/i);
 var DB_name  = (url[6]||null);
 var user     = (url[2]||null);
 var pwd      = (url[3]||null);
@@ -11,8 +10,7 @@ var protocol = (url[1]||null);
 var dialect  = (url[1]||null);
 var port     = (url[5]||null);
 var host     = (url[4]||null);
-//var storage  = process.env.DATABASE_STORAGE;
-var storage = "villabank.sqlite";
+var storage  = process.env.DATABASE_STORAGE;
 
 // Cargar Modelo ORM
 var Sequelize = require('sequelize');
@@ -44,6 +42,9 @@ var Distritos = sequelize.import(distritos_path);
 var regiones_path = path.join(__dirname, 'regiones');
 var Regiones = sequelize.import(regiones_path);
 
+var banco_path = path.join(__dirname, 'banco');
+var Banco = sequelize.import(banco_path);
+
 // Relaciones
 Jovenes.belongsTo(Grupos);
 Grupos.hasMany(Jovenes);
@@ -61,6 +62,7 @@ exports.Estaciones = Estaciones;
 exports.Grupos = Grupos;
 exports.Distritos = Distritos;
 exports.Regiones = Regiones;
+exports.Banco = Banco;
 
 // Iniciando con Estructuras
 sequelize.sync().then(function () {
@@ -76,7 +78,12 @@ sequelize.sync().then(function () {
                 ]).then(function () {
                     console.log('Creando Distritos');
                     Grupos.bulkCreate( [
-                        { nombre: 'Nazaret', distritoId: 1 }
+                        { nombre: 'Nazaret', distritoId: 1 },
+                        { nombre: 'Matacán', distritoId: 1 },
+                        { nombre: 'Paraguaná', distritoId: 1 },
+                        { nombre: 'José Prudencio Padilla', distritoId: 1 },
+                        { nombre: 'Domingo Savio', distritoId: 2 },
+                        { nombre: 'Francisco de Miranda', distritoId: 2 }
                     ]).then(function () {
                         console.log('Creando Grupo');
                     });

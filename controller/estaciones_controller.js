@@ -1,4 +1,12 @@
 var models = require('../models/models.js');
+var ws = require('../bin/www');
+
+function nuevaEstacion() {
+    models.Estaciones.count()
+    .then(function (numero){
+        ws.io.sockets.emit('nuevoEstacion', numero);
+    });
+}
 
 exports.index = function (req, res) {
     var salida =  req.query.salida;
@@ -63,6 +71,7 @@ exports.create = function (req, res) {
                 estaciones
                 .save()
                 .then(function (){
+                    nuevaEstacion();
                     res.redirect('/estaciones');
                 });
             }

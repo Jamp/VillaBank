@@ -23,15 +23,20 @@ block content
                 img(src='images/graph.png',id="mirror")
 
         div.row
-            div#chart.col-md-2
+            div#chart.col-md-2.box
                 canvas(id="placeholder1",width="500",height="500")
 
-            div.col-md-2
-                div#placeholder2(style='height: 500px;')
-
-            div.col-md-2
-                div#placeholder3(style='height: 500px;')
-
+            div.col-md-6
+                table#principal
+                    thead
+                        tr
+                            th.center Nombre
+                            th.center Capacidad
+                    tbody
+                        tr
+                            td(colspan='2').center
+                                i.fa.fa-spin.fa-spinner
+                                | Cargando...
 
     script(src='lib/Chart.js/Chart.min.js')
 
