@@ -1,14 +1,27 @@
+if joven.sexo
+    - var fondo = '/images/lobato.png'
+else
+    - var fondo = '/images/lobezna.png'
 doctype html
 html(lang='es')
     head
         title= title
         link(rel='stylesheet', href='/stylesheets/ubuntu-font.css')
-        style
-            | * { font-family: 'Ubuntu', sans-serif; }
-            | div { border: 1px solid black; margin 0 auto; padding: 2em; width: 300px; }
-            | img { margin-top: 1em; }
+        style(type="text/css",media="screen")
+            | * { font-family: 'Ubuntu', sans-serif; font-size: 14px; }
+            | #fondo { position: absolute; top: 0; left: 0; min-height: 500px; min-width:300px; }
+            | #datos { margin: 130px 0 0 20px; padding: 2em; width: 200px; }
+            | img { margin-top: .5em; width: 70px; }
+
+        style(type="text/css",media="print")
+            | @page { size: auto; margin: 0mm; }
+            | * { font-family: 'Ubuntu', sans-serif; font-size: 14px; -webkit-print-color-adjust: exact; color-adjust: exact;  }
+            | #fondo { position: absolute; top: 0; left: 0; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
+            | div { margin: 130px 0 0 20px; padding: 2em; width: 200px; z-index: 2; }
+            | img { margin-top: .5em; width: 70px; }
     body
-        div
+        div#fondo(style="background: url('#{fondo}') no-repeat; z-index: 1;")
+        div#datos
             p
                 b Nombres:
                 &nbsp #{joven.nombres}
