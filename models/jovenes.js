@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         saldo: {
             type: DataTypes.INTEGER,
             allowNull: true,
-            defaultValue: 0
+            defaultValue: 30
         }
     });
 };
