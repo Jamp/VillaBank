@@ -1,0 +1,54 @@
+if joven.sexo
+    - var fondo = '/images/lobato.png'
+else
+    - var fondo = '/images/lobezna.png'
+doctype html
+html(lang='es')
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/ubuntu-font.css')
+        style(type="text/css",media="screen")
+            | * { font-family: 'Ubuntu', sans-serif; font-size: 14px; }
+            | #fondo.p1 { position: absolute; top: 0; left: 0; min-height: 500px; min-width:300px; }
+            | #fondo.p2 { position: absolute; top: 0; left: 600px; min-height: 500px; min-width:300px; }
+            | #fondo.p3 { position: absolute; top: 550px; left: 0px; min-height: 500px; min-width:300px; }
+            | #fondo.p4 { position: absolute; top: 550px; left: 600px; min-height: 500px; min-width:300px; }
+            | #datos.p1 { margin: 130px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
+            | #datos.p2 { margin: 130px 0 0 350px; padding: 2em; width: 200px; display: inline-block; }
+            | #datos.p3 { margin: 580px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
+            | #datos.p4 { margin: 580px 0 0 350px; padding: 2em; width: 200px; display: inline-block; }
+            | img { margin-top: .5em; width: 70px; }
+
+        style(type="text/css",media="print")
+            | @page { size: auto; margin: 0mm; }
+            | * { font-family: 'Ubuntu', sans-serif; font-size: 14px; -webkit-print-color-adjust: exact; color-adjust: exact;  }
+            | #fondo.p1 { position: absolute; top: 0; left: 0; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
+            | #fondo.p2 { position: absolute; top: 0; left: 600px; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
+            | #fondo.p3 { position: absolute; top: 550px; left: 0; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
+            | #fondo.p4 { position: absolute; top: 550px; left: 600px; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
+            | #datos.p1 { margin: 130px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
+            | #datos.p2 { margin: 130px 0 0 350px; padding: 2em; width: 200px; display: inline-block; }
+            | #datos.p3 { margin: 580px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
+            | #datos.p4 { margin: 580px 0 0 350px; padding: 2em; width: 200px; display: inline-block; }
+            | img { margin-top: .5em; width: 70px; }
+    body
+        for item in jovenes
+            div#fondo(style="background: url('#{fondo}') no-repeat; z-index: 1;", class="p"+item)
+            div#datos(class="p"+item)
+                p
+                    b Nombres:
+                    &nbsp #{joven.nombres}
+                p
+                    b Apellidos:
+                    &nbsp #{joven.apellidos}
+                p
+                    b Grupo:
+                    &nbsp #{joven.grupo}
+                p
+                    b Distrito:
+                    &nbsp #{joven.distrito}
+                p
+                    b Región:
+                    &nbsp #{joven.region}
+                center
+                    img(src='/jovenes/multipass/#{joven.id}')

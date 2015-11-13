@@ -14,5 +14,6 @@ router.post('/update', jovenesController.update);
 
 router.get('/multipass/:jovenId(\\d+)', jovenesController.multipass);
 router.get('/ver/:jovenId(\\d+)', jovenesController.view);
+router.get('/lote/:jovenId(\\d+)', jovenesController.lot);
 
 module.exports = router;

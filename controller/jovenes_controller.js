@@ -202,3 +202,38 @@ exports.view = function (req, res) {
         res.render('jovenes/ver', { title: 'Ver Jóven', joven: datos });
     });
 };
+
+exports.lot = function (req, res) {
+    var options = {
+        where: {
+            id: req.params.jovenId
+        },
+        include: [
+            {
+                model: models.Grupos,
+                include: [
+                    {
+                        model: models.Distritos,
+                        include: [
+                            models.Regiones
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    models.Jovenes.find(options)
+    .then(function (joven){
+        var datos = {
+            id: joven.id,
+            nombres: joven.nombres,
+            apellidos: joven.apellidos,
+            sexo: joven.sexo,
+            region: joven.grupo.distrito.region.nombre,
+            distrito: joven.grupo.distrito.nombre,
+            grupo: joven.grupo.nombre
+        }
+        res.render('jovenes/lote', { title: 'Ver Jóven', joven: datos, jovenes: [1,2,3,4] });
+    });
+};
