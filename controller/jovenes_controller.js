@@ -204,10 +204,8 @@ exports.view = function (req, res) {
 };
 
 exports.lot = function (req, res) {
+
     var options = {
-        where: {
-            id: req.params.jovenId
-        },
         include: [
             {
                 model: models.Grupos,
@@ -223,17 +221,8 @@ exports.lot = function (req, res) {
         ]
     }
 
-    models.Jovenes.find(options)
-    .then(function (joven){
-        var datos = {
-            id: joven.id,
-            nombres: joven.nombres,
-            apellidos: joven.apellidos,
-            sexo: joven.sexo,
-            region: joven.grupo.distrito.region.nombre,
-            distrito: joven.grupo.distrito.nombre,
-            grupo: joven.grupo.nombre
-        }
-        res.render('jovenes/lote', { title: 'Ver Jóven', joven: datos, jovenes: [1,2,3,4] });
+    models.Jovenes.findAll(options)
+    .then(function (jovenes){
+        res.render('jovenes/lote', { title: 'Impresión por Lote', jovenes: jovenes });
     });
 };

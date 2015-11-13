@@ -81,8 +81,8 @@ sequelize.sync().then(function () {
                         { nombre: 'Nazaret', distritoId: 1 },
                         { nombre: 'Matacán', distritoId: 1 },
                         { nombre: 'Paraguaná', distritoId: 1 },
-                        { nombre: 'José Prudencio Padilla', distritoId: 1 },
                         { nombre: 'Domingo Savio', distritoId: 2 },
+                        { nombre: 'Enmanuel', distritoId: 2 },
                         { nombre: 'Francisco de Miranda', distritoId: 2 }
                     ]).then(function () {
                         console.log('Creando Grupo');

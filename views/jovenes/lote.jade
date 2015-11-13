@@ -1,7 +1,7 @@
-if joven.sexo
-    - var fondo = '/images/lobato.png'
-else
-    - var fondo = '/images/lobezna.png'
+- var columna_izquierda = 40
+- var columna_derecha = 400
+- var alto_linea = 470
+
 doctype html
 html(lang='es')
     head
@@ -9,46 +9,59 @@ html(lang='es')
         link(rel='stylesheet', href='/stylesheets/ubuntu-font.css')
         style(type="text/css",media="screen")
             | * { font-family: 'Ubuntu', sans-serif; font-size: 14px; }
-            | #fondo.p1 { position: absolute; top: 0; left: 0; min-height: 500px; min-width:300px; }
-            | #fondo.p2 { position: absolute; top: 0; left: 600px; min-height: 500px; min-width:300px; }
-            | #fondo.p3 { position: absolute; top: 550px; left: 0px; min-height: 500px; min-width:300px; }
-            | #fondo.p4 { position: absolute; top: 550px; left: 600px; min-height: 500px; min-width:300px; }
-            | #datos.p1 { margin: 130px 0 0 20px; padding: 2em; width: 200px; display: inline-block; position: absolute; }
-            | #datos.p2 { margin: 130px 0 0 620px; padding: 2em; width: 200px; display: inline-block; position: absolute; }
-            | #datos.p3 { margin: 680px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
-            | #datos.p4 { margin: 680px 0 0 350px; padding: 2em; width: 200px; display: inline-block; }
-            | img { margin-top: .5em; width: 70px; }
+            | #fondo { min-height: 449px; min-width:300px; }
+            | #datos { margin: 130px 0 0 20px; padding: 2em; width: 200px; display: inline-block; position: absolute; }
+            | .par { left: #{columna_izquierda}px; display: inline-block; position: absolute; }
+            | .impar { left: #{columna_derecha}px; display: inline-block; position: absolute; }
+            | img { margin-top: .5em; width: 85px; }
 
         style(type="text/css",media="print")
-            | @page { size: auto; margin: 0mm; }
+            | @page { size: auto; margin: 5mm; }
             | * { font-family: 'Ubuntu', sans-serif; font-size: 14px; -webkit-print-color-adjust: exact; color-adjust: exact;  }
-            | #fondo.p1 { position: absolute; top: 0; left: 0; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
-            | #fondo.p2 { position: absolute; top: 0; left: 600px; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
-            | #fondo.p3 { position: absolute; top: 550px; left: 0; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
-            | #fondo.p4 { position: absolute; top: 550px; left: 600px; margin: 0; min-height: 500px; min-width:300px; z-index: 1; }
-            | #datos.p1 { margin: 130px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
-            | #datos.p2 { margin: 130px 0 0 350px; padding: 2em; width: 200px; display: block; }
-            | #datos.p3 { margin: 580px 0 0 20px; padding: 2em; width: 200px; display: inline-block; }
-            | #datos.p4 { margin: 580px 0 0 350px; padding: 2em; width: 200px; display: inline-block; }
-            | img { margin-top: .5em; width: 70px; }
+            | #fondo { margin: 0; min-height: 449px; min-width:300px; z-index: 1; border:1px solid black; }
+            | #datos { margin: 130px 0 0 20px; padding: 2em; width: 200px;}
+            | .par { left: #{columna_izquierda}px; display: inline-block; position: absolute; }
+            | .impar { left: #{columna_derecha}px; display: inline-block; position: absolute; }
+            | img { margin-top: .5em; width: 85px; }
     body
-        for item in jovenes
-            div#fondo(style="background: url('#{fondo}') no-repeat; z-index: 1;", class="p"+item)
-            div#datos(class="p"+item)
+        - var linea = 0
+        - var hoja = 1
+        - for (var i=0; i < jovenes.length; ++i)
+
+            if jovenes[i].sexo
+                - var fondo = '/images/lobato.png'
+            else
+                - var fondo = '/images/lobezna.png'
+
+            if (i % 2 == 0)
+                - var tipo = 'par'
+                - var alto = 'top: '+(linea*alto_linea)+'px;';
+                - var linea = linea + 1
+            else
+                - var tipo = 'impar'
+
+
+            div#fondo(style="background: url('#{fondo}') no-repeat; z-index: 1; #{alto}", class='#{tipo}')
+            div#datos(style="margin: 130px 0 0 20px; padding: 2em; width: 200px; #{alto}", class='#{tipo}')
                 p
                     b Nombres:
-                    &nbsp #{joven.nombres}
-                p
+                    &nbsp #{jovenes[i].nombres}
+                    br
+
                     b Apellidos:
-                    &nbsp #{joven.apellidos}
-                p
+                    &nbsp #{jovenes[i].apellidos}
+                    br
+
                     b Grupo:
-                    &nbsp #{joven.grupo}
-                p
+                    &nbsp #{jovenes[i].grupo.nombre}
+                    br
+
                     b Distrito:
-                    &nbsp #{joven.distrito}
-                p
+                    &nbsp #{jovenes[i].grupo.distrito.nombre}
+                    br
+
                     b Región:
-                    &nbsp #{joven.region}
+                    &nbsp #{jovenes[i].grupo.distrito.region.nombre}
+                    br
                 center
-                    img(src='/jovenes/multipass/#{joven.id}')
+                    img(src='/jovenes/multipass/#{jovenes[i].id}')
